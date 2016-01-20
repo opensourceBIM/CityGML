@@ -1,7 +1,7 @@
 package org.bimserver.citygml;
 
 /******************************************************************************
- * Copyright (C) 2009-2015  BIMserver.org
+ * Copyright (C) 2009-2016  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -14,7 +14,7 @@ package org.bimserver.citygml;
  * GNU Affero General Public License for more details.
  * 
  * You should have received a copy of the GNU Affero General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
  *****************************************************************************/
 
 import java.io.File;
@@ -75,13 +75,13 @@ public class BuildingCreator {
 		Polygon roof_1 = geom.createLinearPolygon(new double[] { 6, 0, 6, 6, 12, 6, 3, 12, 9, 3, 0, 9, 6, 0, 6 }, 3);
 		Polygon roof_2 = geom.createLinearPolygon(new double[] { 0, 0, 6, 3, 0, 9, 3, 12, 9, 0, 12, 6, 0, 0, 6 }, 3);
 
-		ground.setId(gmlIdManager.generateGmlId());
-		wall_1.setId(gmlIdManager.generateGmlId());
-		wall_2.setId(gmlIdManager.generateGmlId());
-		wall_3.setId(gmlIdManager.generateGmlId());
-		wall_4.setId(gmlIdManager.generateGmlId());
-		roof_1.setId(gmlIdManager.generateGmlId());
-		roof_2.setId(gmlIdManager.generateGmlId());
+		ground.setId(gmlIdManager.generateUUID());
+		wall_1.setId(gmlIdManager.generateUUID());
+		wall_2.setId(gmlIdManager.generateUUID());
+		wall_3.setId(gmlIdManager.generateUUID());
+		wall_4.setId(gmlIdManager.generateUUID());
+		roof_1.setId(gmlIdManager.generateUUID());
+		roof_2.setId(gmlIdManager.generateUUID());
 
 		// lod2 solid
 		List<SurfaceProperty> surfaceMember = new ArrayList<SurfaceProperty>();
