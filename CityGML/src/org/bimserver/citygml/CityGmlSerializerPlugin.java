@@ -30,26 +30,8 @@ import org.bimserver.shared.exceptions.PluginException;
 
 public class CityGmlSerializerPlugin extends AbstractSerializerPlugin {
 
-	private boolean initialized = false;
-
-	@Override
-	public String getDescription() {
-		return "CityGmlSerializer";
-	}
-
-	@Override
-	public String getVersion() {
-		return "1.0";
-	}
-
-	@Override
-	public boolean needsGeometry() {
-		return true;
-	}
-	
 	@Override
 	public void init(PluginManagerInterface pluginManager) throws PluginException, RenderEngineException {
-		initialized = true;
 	}
 	
 	public Serializer createSerializer(PluginConfiguration pluginConfiguration) {
@@ -69,11 +51,6 @@ public class CityGmlSerializerPlugin extends AbstractSerializerPlugin {
 	@Override
 	public String getDefaultExtension() {
 		return "gml";
-	}
-
-	@Override
-	public boolean isInitialized() {
-		return initialized;
 	}
 
 	@Override

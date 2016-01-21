@@ -3,6 +3,7 @@
 	<PluginImplementation>
 		<interfaceClass>org.bimserver.plugins.serializers.SerializerPlugin</interfaceClass>
 		<implementationClass>org.bimserver.citygml.CityGmlSerializerPlugin</implementationClass>
+		<description>CityGmlSerializer</description>
 		<enabled>true</enabled>
 	</PluginImplementation>
 </PluginDescriptor>
