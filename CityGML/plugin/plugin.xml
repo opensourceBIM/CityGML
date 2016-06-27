@@ -4,5 +4,6 @@
 		<interfaceClass>org.bimserver.plugins.serializers.SerializerPlugin</interfaceClass>
 		<implementationClass>org.bimserver.citygml.CityGmlSerializerPlugin</implementationClass>
 		<description>CityGmlSerializer</description>
+		<name>CityGML 2.0 Serializer</name>
 	</JavaPlugin>
 </PluginDescriptor>

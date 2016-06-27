@@ -22,7 +22,7 @@ import java.util.Set;
 import org.bimserver.emf.Schema;
 import org.bimserver.models.store.ObjectDefinition;
 import org.bimserver.plugins.PluginConfiguration;
-import org.bimserver.plugins.PluginManagerInterface;
+import org.bimserver.plugins.PluginContext;
 import org.bimserver.plugins.renderengine.RenderEngineException;
 import org.bimserver.plugins.serializers.AbstractSerializerPlugin;
 import org.bimserver.plugins.serializers.Serializer;
@@ -31,16 +31,11 @@ import org.bimserver.shared.exceptions.PluginException;
 public class CityGmlSerializerPlugin extends AbstractSerializerPlugin {
 
 	@Override
-	public void init(PluginManagerInterface pluginManager) throws PluginException, RenderEngineException {
+	public void init(PluginContext pluginContext) throws PluginException, RenderEngineException {
 	}
 	
 	public Serializer createSerializer(PluginConfiguration pluginConfiguration) {
 		return new CityGmlSerializer();
-	}
-
-	@Override
-	public String getDefaultName() {
-		return "CityGML1.0.0";
 	}
 
 	@Override
@@ -56,6 +51,11 @@ public class CityGmlSerializerPlugin extends AbstractSerializerPlugin {
 	@Override
 	public ObjectDefinition getSettingsDefinition() {
 		return super.getSettingsDefinition();
+	}
+	
+	@Override
+	public boolean needsGeometry() {
+		return true;
 	}
 	
 	@Override
