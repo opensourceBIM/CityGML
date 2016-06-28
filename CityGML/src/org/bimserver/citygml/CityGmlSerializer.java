@@ -21,6 +21,7 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
+import java.nio.DoubleBuffer;
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
 import java.util.ArrayList;
@@ -33,6 +34,7 @@ import javax.xml.bind.JAXBException;
 
 import org.bimserver.citygml.xbuilding.GlobalIdType;
 import org.bimserver.emf.IfcModelInterface;
+import org.bimserver.geometry.Matrix;
 import org.bimserver.models.geometry.GeometryData;
 import org.bimserver.models.geometry.GeometryInfo;
 import org.bimserver.models.ifc2x3tc1.IfcBuilding;
@@ -657,18 +659,32 @@ public class CityGmlSerializer extends AbstractGeometrySerializer {
 				ByteBuffer verticesBuffer = ByteBuffer.wrap(geometryData.getVertices());
 				verticesBuffer.order(ByteOrder.LITTLE_ENDIAN);
 				FloatBuffer vertices = verticesBuffer.asFloatBuffer();
+
+				double[] matrix = new double[16];
+				ByteBuffer transformationBuffer = ByteBuffer.wrap(geometryInfo.getTransformation());
+				transformationBuffer.order(ByteOrder.LITTLE_ENDIAN);
+				DoubleBuffer transformation = transformationBuffer.asDoubleBuffer();
+				transformation.get(matrix);
 				
 				for (int i=0; i<indices.capacity(); i+=3) {
 					int index1 = indices.get(i);
 					int index2 = indices.get(i + 1);
 					int index3 = indices.get(i + 2);
 					
+					double[] v1 = new double[4];
+					double[] v2 = new double[4];
+					double[] v3 = new double[4];
+					
+					Matrix.multiplyMV(v1, 0, matrix, 0, new double[]{(double) vertices.get(index1 * 3), (double) vertices.get(index1 * 3 + 1), (double) vertices.get(index1 * 3 + 2), 1}, 0);
+					Matrix.multiplyMV(v2, 0, matrix, 0, new double[]{(double) vertices.get(index2 * 3), (double) vertices.get(index2 * 3 + 1), (double) vertices.get(index2 * 3 + 2), 1}, 0);
+					Matrix.multiplyMV(v3, 0, matrix, 0, new double[]{(double) vertices.get(index3 * 3), (double) vertices.get(index3 * 3 + 1), (double) vertices.get(index3 * 3 + 2), 1}, 0);
+					
 					ms.addSurfaceMember(createSurfaceProperty(
 							Arrays.asList(new Double[] {
-									(double) vertices.get(index1 * 3), (double) vertices.get(index1 * 3 + 1), (double) vertices.get(index1 * 3 + 2),
-									(double) vertices.get(index3 * 3), (double) vertices.get(index3 * 3 + 1), (double) vertices.get(index3 * 3 + 2),
-									(double) vertices.get(index2 * 3), (double) vertices.get(index2 * 3 + 1), (double) vertices.get(index2 * 3 + 2),
-									(double) vertices.get(index1 * 3), (double) vertices.get(index1 * 3 + 1), (double) vertices.get(index1 * 3 + 2)}
+									v1[0], v1[1], v1[2],
+									v2[0], v2[1], v2[2],
+									v3[0], v3[1], v3[2],
+									v1[0], v1[1], v1[2]}
 									)));
 				}
 			}
