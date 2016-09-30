@@ -62,4 +62,9 @@ public class CityGmlSerializerPlugin extends AbstractSerializerPlugin {
 	public Set<Schema> getSupportedSchemas() {
 		return Schema.IFC2X3TC1.toSet();
 	}
+
+	@Override
+	public String getOutputFormat(Schema schema) {
+		return "CITYGML_2.0.0";
+	}
 }
