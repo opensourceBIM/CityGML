@@ -23,6 +23,7 @@ import org.bimserver.emf.Schema;
 import org.bimserver.models.store.ObjectDefinition;
 import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.plugins.PluginContext;
+import org.bimserver.plugins.SchemaName;
 import org.bimserver.plugins.renderengine.RenderEngineException;
 import org.bimserver.plugins.serializers.AbstractSerializerPlugin;
 import org.bimserver.plugins.serializers.Serializer;
@@ -65,6 +66,6 @@ public class CityGmlSerializerPlugin extends AbstractSerializerPlugin {
 
 	@Override
 	public String getOutputFormat(Schema schema) {
-		return "CITYGML_2.0.0";
+		return SchemaName.CITYGML_2_0_0.name();
 	}
 }
