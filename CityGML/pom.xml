@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.opensourcebim</groupId>
 	<artifactId>citygml</artifactId>
-	<version>0.0.3</version>
+	<version>0.0.4-SNAPSHOT</version>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<timestamp>${maven.build.timestamp}</timestamp>
@@ -187,7 +187,7 @@
 		<url>https://github.com/opensourceBIM/CityGML.git</url>
 		<connection>scm:git:https://github.com/opensourceBIM/CityGML.git</connection>
 		<developerConnection>scm:git:https://github.com/opensourceBIM/CityGML.git</developerConnection>
-		<tag>citygml-0.0.3</tag>
+		<tag>HEAD</tag>
 	</scm>
 	<organization>
 		<name>OpenSource BIM</name>
